@@ -6,13 +6,13 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: 'Production',
+            title: 'Webpack app',
             template: './src/index.html',
             filename: './index.html'
         })
     ],
     output: {
-        filename: "[name].bundle.js",
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
     devtool: 'source-map',
@@ -53,9 +53,6 @@ module.exports = {
         ]
     },
     devServer: {
-        // contentBase: path.join(__dirname, 'dist'),
-        // compress: true,
-        port: 8000, // default 8080
-        watchContentBase: true,
+        historyApiFallback: true, // to change url from 3000/#/home -> 3000/home
     },
 }
