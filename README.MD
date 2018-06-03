@@ -118,7 +118,7 @@ module.exports = {
     "build": "webpack --config webpack.prod.js"
 },
 9. If we want to use import CSS, SASS as well as images to .tsx files, we need to install bellow:
-$ npm i -D style-loader css-loader sass-loader file-loader
+$ npm i -D style-loader css-loader sass-loader file-loader node-sass
 and config them in webpack.config.js:
 {
     test: /\.css$/,
@@ -148,6 +148,21 @@ devServer: {
     port: 3107,
     watchContentBase: true, // reload when any file change
 },
+11. Import in TypesScript
+    1. node packages
+    import * as React from 'react';
+    2. css/sass files
+    import './App.css';
+    `3. image files` because tsx doesnt undestannd automatically when we import files 11*
+    import logo from './logo.svg;
+11* Importing Other Assets
+    1. at src folder create custome.d.ts (maybe at other folder) src/custom.d.ts
+    2. inside custom.d.ts:
+        declare module '*.svg'
+        declare module '*.png'
+        declare module '*.jpg'
+    3. Webpack tuto https://webpack.js.org/guides/typescript/
+
 # Errors
 1.
 ERROR in [at-loader] ./node_modules/@types/node/index.d.ts:6208:55
