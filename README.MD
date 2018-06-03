@@ -117,6 +117,37 @@ module.exports = {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
 },
+9. If we want to use import CSS, SASS as well as images to .tsx files, we need to install bellow:
+$ npm i -D style-loader css-loader sass-loader file-loader
+and config them in webpack.config.js:
+{
+    test: /\.css$/,
+    loaders: ['style-loader','css-loader'],
+},
+{
+    test: /\.scss$/,
+    loaders: ['style-loader','css-loader','sass-loader']
+}
+// for files
+{
+    test: /\.(png|jpg|gif|svg)$/,
+    use: [
+    {
+        loader: 'file-loader',
+        options: {
+            name: '[name].[ext]',
+            outputPath: 'images/'
+        }
+    }]
+}
+10. Reload when change files
+devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    // host: '0.0.0.0',
+    port: 3107,
+    watchContentBase: true, // reload when any file change
+},
 # Errors
 1.
 ERROR in [at-loader] ./node_modules/@types/node/index.d.ts:6208:55

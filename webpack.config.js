@@ -29,7 +29,33 @@ module.exports = {
                 test: /\.js$/,
                 enforce: 'pre',
                 loader: 'source-map-loader'
+            },
+            {
+                test: /\.css$/,
+                loaders: ['style-loader','css-loader'],
+            },
+            {
+                test: /\.scss$/,
+                loaders: ['style-loader','css-loader','sass-loader']
+            },
+            // for files
+            {
+                test: /\.(png|jpg|gif|svg)$/,
+                use: [
+                {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'images/'
+                    }
+                }]
             }
         ]
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 8000, // default 8080
+        watchContentBase: true,
     },
 }
