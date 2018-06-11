@@ -17,6 +17,11 @@ module.exports = {
             filename: './index.html'
         })
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    },
     devtool: 'source-map',
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json']
